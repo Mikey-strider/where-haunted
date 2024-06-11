@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>All Ghosts</title>
+</head>
+<body>
+  <h1>Display all Ghosts!</h1>
+  <!-- display all ghosts here so we can choose which one we want to investigate! -->
+  <ul>
+  <% ghosts.forEach(boo => { %>
+   <li><%= boo.name %></li>
+  <% }) %>
+</ul>
+  <!-- Each ghost needs to have a link to an individual ghost -->
+</body>
+</html>
