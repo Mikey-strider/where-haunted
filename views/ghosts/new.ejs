@@ -1,24 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
+<%- include('../partials/header.ejs') %>
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Create a Haunt</title>
-</head>
+<%- include('../partials/_navbar.ejs') %>
 
-<body>
+
+
   <h1>Create a new Haunted place here!</h1>
   <form action="/ghosts" method="POST">
     <label for="name">Name:</label>
     <input type="text" name="name" id="name">
     <label for="description">Please explain your experience.</label>
     <textarea name="description" id="description" placeholder="Description Here"></textarea>
-    <label for="location"></label>
+    <label for="location">Please add the location</label>
     <input type="text" name="location" id="location">
     <button type="submit">Add Ghost</button>
 
   </form>
-</body>
-
-</html>
+  <%- include('../partials/footer.ejs') %>

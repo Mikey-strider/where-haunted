@@ -17,6 +17,8 @@ const authController = require('./controllers/auth.js');
 const hauntedController = require('./controllers/haunted.js')
 
 const port = process.env.PORT ? process.env.PORT : '3000';
+const path = require('path');
+
 
 // Connect to MongoDB using the connection string in the .env file
 mongoose.connect(process.env.MONGODB_URI);
@@ -36,6 +38,7 @@ mongoose.connection.on("connected", () => {
 app.use(express.urlencoded({ extended: false }));
 app.use(methodOverride('_method'));
 app.use(morgan('dev'));
+app.use(express.static(path.join(__dirname, 'public')));
 app.use(
   session({
     secret: process.env.SESSION_SECRET,
@@ -55,6 +58,8 @@ app.use(passUserToView);
 
 
 app.get('/', (req, res) => {
+
+  // render the regular homepage
   res.render('index.ejs', {
     user: req.session.user,
   });

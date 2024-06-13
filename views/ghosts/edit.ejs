@@ -1,11 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Edit Ghost</title>
-</head>
-<body>
+<%- include('../partials/header.ejs') %>
+
+<%- include('../partials/_navbar.ejs') %>
+
+
+
   <h1>Editing: <%= currentHaunt.name %></h1>
 
   <form action="/ghosts/<%= currentHaunt._id %>?_method=PUT" method="POST">
@@ -18,5 +16,4 @@
     <button type="submit">Edit Ghost</button>
 
   </form>
-</body>
-</html>
+  <%- include('../partials/footer.ejs') %>

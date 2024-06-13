@@ -1,11 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Show Ghosts</title>
-</head>
-<body>
+<%- include('../partials/header.ejs') %>
+
+<%- include('../partials/_navbar.ejs') %>
+
+
   <h1><%= ghosts.name %></h1>
 
   <!-- 
@@ -15,20 +12,18 @@
     I want to be able edit my reviews or delete 
     -->
 
-    <form action="/:ghostsId" method="POST">
-      <label for="author">Author:</label>
-      <input type="text" name="author" id="author">
-      <label for="whatType">What Type</label>
-      <input type="text" name="whatType" id="whatType">
-      <label for="ghostReview">Ghost Review</label>
-      <textarea name="ghostReview" id="ghostReview" placeholder="Review Here"></textarea>
-      <label for="rating">What is your rating</label>
-      <input type="" name="rating" id="rating">
-      <button type="submit">Submit review</button>
 
-    </form>
   <div>
-    <h3>Creator: <%= ghosts.creator.username %></h3>
+    <h2>Creator: <%= ghosts.creator.username %></h2>
+    <% if (ghosts.creator._id.equals(user._id)) { %>
+     <p>You own this</p>
+     <a href="/ghosts/<%= ghosts._id %>/edit">Edit</a>
+     <form action="/ghosts/<%= ghosts._id %>?_method=DELETE" method="POST">
+       <button type="submit">Delete Haunt</button>
+     </form>
+    <% } else { %>
+      <p>You don't own this, <%= ghosts.creator.username %> does!</p>
+    <% } %>
     <p><%= ghosts.description %></p>
     <p>Location <%= ghosts.location %></p>
 
@@ -39,7 +34,20 @@
 
     </ul>
   </div>
-  <a href="/ghosts/<%= ghosts._id %>/edit">Edit</a>
 
-</body>
-</html>
+  <!-- <form action="/ghosts/<%= ghosts._id %>" method="POST">
+    <label for="author">Author:</label>
+    <input type="text" name="author" id="author">
+    <label for="whatType">What Type</label>
+    <input type="text" name="whatType" id="whatType">
+    <label for="ghostReview">Ghost Review</label>
+    <textarea name="ghostReview" id="ghostReview" placeholder="Review Here"></textarea>
+    <label for="rating">What is your rating</label>
+    <input type="" name="rating" id="rating">
+    <button type="submit">Submit review</button>
+
+  </form> -->
+<%- include('../partials/footer.ejs') %>
+
+ 
+
