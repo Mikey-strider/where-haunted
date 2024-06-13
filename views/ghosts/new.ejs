@@ -9,11 +9,13 @@
 
 <body>
   <h1>Create a new Haunted place here!</h1>
-  <form action="/haunts" method="POST">
+  <form action="/ghosts" method="POST">
     <label for="name">Name:</label>
     <input type="text" name="name" id="name">
-    <label for="isHaunted">Is it Haunted?</label>
-    <input type="checkbox" name="isHaunted" id="isHaunted">
+    <label for="description">Please explain your experience.</label>
+    <textarea name="description" id="description" placeholder="Description Here"></textarea>
+    <label for="location"></label>
+    <input type="text" name="location" id="location">
     <button type="submit">Add Ghost</button>
 
   </form>

@@ -4,7 +4,19 @@ const dotenv = require("dotenv"); // require package
 dotenv.config(); // Loads the environment variables from .env file
 const morgan = require('morgan')
 const app = express();
+const methodOverride = require('method-override');
 const mongoose = require("mongoose"); // require package
+const session = require('express-session');
+
+
+
+const isSignedIn = require('./middleware/is-signed-in.js');
+const passUserToView = require('./middleware/pass-user-to-view.js');
+
+const authController = require('./controllers/auth.js');
+const hauntedController = require('./controllers/haunted.js')
+
+const port = process.env.PORT ? process.env.PORT : '3000';
 
 // Connect to MongoDB using the connection string in the .env file
 mongoose.connect(process.env.MONGODB_URI);
@@ -13,18 +25,27 @@ mongoose.connection.on("connected", () => {
   console.log(`Connected to MongoDB ${mongoose.connection.name}.`);
 });
 
-const HauntModel = require('./models/haunts.js')
-app.use(express.urlencoded({ extended: false }));
+// const HauntModel = require('./models/haunt.js')
 
 
-app.listen(3000, () => {
-  console.log("Listening on port 3000");
-});
+
 
 
 
 //====================middleware============
+app.use(express.urlencoded({ extended: false }));
+app.use(methodOverride('_method'));
 app.use(morgan('dev'));
+app.use(
+  session({
+    secret: process.env.SESSION_SECRET,
+    resave: false,
+    saveUninitialized: true,
+  })
+);
+
+app.use(passUserToView);
+
 
 
 
@@ -32,35 +53,20 @@ app.use(morgan('dev'));
 //====================routes================
 
 
-app.get('/ghosts/new', (req, res) => {
-  res.render('ghosts/new.ejs')
-})
 
-app.post("/ghosts", async (req, res) => {
-  console.log(req.body);
-  req.body.isHaunted = !!req.body.isHaunted;
-  const Haunt = await HauntModel.create(req.body)
-  console.log(Haunt)
-  res.redirect("/ghosts");
-});
-
-app.get('/ghosts', async (req, res) => {
-  const allHaunts = await HauntModel.find({})
-  console.log(allHaunts)
-  res.render('ghosts/index.ejs', {ghosts: allHaunts});
-})
-
-
-app.get("/", async (req, res) => {
-  res.render("index.ejs");
+app.get('/', (req, res) => {
+  res.render('index.ejs', {
+    user: req.session.user,
+  });
 });
 
 
 
+app.use('/auth', authController);
+app.use('/ghosts', isSignedIn, hauntedController);
 
 
 
-
-app.get("/", async (req, res) => {
-  res.send("hello, friend!");
+app.listen(port, () => {
+  console.log(`The express app is ready on port ${port}!`);
 });

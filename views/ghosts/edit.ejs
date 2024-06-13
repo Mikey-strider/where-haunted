@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Edit Ghost</title>
+</head>
+<body>
+  <h1>Editing: <%= currentHaunt.name %></h1>
+
+  <form action="/ghosts/<%= currentHaunt._id %>?_method=PUT" method="POST">
+    <label for="name">Name:</label>
+    <input type="text" name="name" id="name" value="<%= currentHaunt.name %>">
+    <label for="description">Please explain your experience.</label>
+    <textarea name="description" id="description" placeholder="<%= currentHaunt.description %>"></textarea>
+    <label for="location"></label>
+    <input type="text" name="location" id="location" value="<%= currentHaunt.location %>">
+    <button type="submit">Edit Ghost</button>
+
+  </form>
+</body>
+</html>

@@ -21,6 +21,6 @@ userSchema.set('toObject', {
   }
 })
 
-const UserModel = mongoose.model('User', {userSchema});
+const User = mongoose.model('User', userSchema);
 
-module.exports = UserModel;
+module.exports = User;

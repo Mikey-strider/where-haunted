@@ -2,11 +2,15 @@ const mongoose = require('mongoose');
 
 const reviewsSchema = new mongoose.Schema({
   reviews: {
+    author: {
+      type: String,
+      required: true,
+    },
     whatType: {
       type: String,
       required: true,
     },
-    ghostDescription: {
+    ghostReview: {
       type: String,
       required: true,
     },
@@ -31,10 +35,10 @@ const hauntSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  user: [{
+  creator: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'UserModel',
-  }],
+    ref: 'User',
+  },
   reviews: [reviewsSchema],
 })
 

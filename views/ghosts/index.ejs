@@ -8,11 +8,24 @@
 <body>
   <h1>Display all Ghosts!</h1>
   <!-- display all ghosts here so we can choose which one we want to investigate! -->
+   <!-- 
+    I want to be able to see my favorite haunts on here.
+    I want to be able to navigate to other haunts and review them.
+    AAU I want to be able to see a list of all my haunts.
+    I also want to be able to select an individual haunt. 
+      -->
   <ul>
   <% ghosts.forEach(boo => { %>
-   <li><%= boo.name %></li>
+   <li>
+    <a href="/ghosts/<%= boo.id %>">
+
+      <%= boo.name %>
+    </a>
+  </li>
   <% }) %>
 </ul>
+<a href="/ghosts/new">Create a New Haunt</a>
+
   <!-- Each ghost needs to have a link to an individual ghost -->
 </body>
 </html>

@@ -6,10 +6,40 @@
   <title>Show Ghosts</title>
 </head>
 <body>
-  <h1>Show me the Ghosts!</h1>
-  //display the chosen Ghost/haunted area
-  //be able to choose to edit a haunted area if it was added by the user
-  // delete the haunted area if you are the user
+  <h1><%= ghosts.name %></h1>
+
+  <!-- 
+    I want to see my reviews.
+    I want to be able to edit or delete.
+    I want to be able to see all reviews for this haunt.
+    I want to be able edit my reviews or delete 
+    -->
+
+    <form action="/:ghostsId" method="POST">
+      <label for="author">Author:</label>
+      <input type="text" name="author" id="author">
+      <label for="whatType">What Type</label>
+      <input type="text" name="whatType" id="whatType">
+      <label for="ghostReview">Ghost Review</label>
+      <textarea name="ghostReview" id="ghostReview" placeholder="Review Here"></textarea>
+      <label for="rating">What is your rating</label>
+      <input type="" name="rating" id="rating">
+      <button type="submit">Submit review</button>
+
+    </form>
+  <div>
+    <h3>Creator: <%= ghosts.creator.username %></h3>
+    <p><%= ghosts.description %></p>
+    <p>Location <%= ghosts.location %></p>
+
+    <ul>
+      <% ghosts.reviews.forEach(boo => { %>
+       <li><%= boo.reviews %></li>
+      <% }) %>
+
+    </ul>
+  </div>
+  <a href="/ghosts/<%= ghosts._id %>/edit">Edit</a>
 
 </body>
 </html>
