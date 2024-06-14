@@ -1,7 +1,6 @@
 const mongoose = require('mongoose');
 
 const reviewsSchema = new mongoose.Schema({
-  reviews: {
     author: {
       type: String,
       required: true,
@@ -18,7 +17,6 @@ const reviewsSchema = new mongoose.Schema({
       type: String,
       required: true,
     },
-  },
 })
 
 

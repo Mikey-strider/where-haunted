@@ -4,18 +4,22 @@ const router = express.Router();
 const Haunted = require('../models/haunt.js');
 
 
-// router.post('/:ghostsId/reviews', async (req, res) => {
-//   try {
-//     await Haunted.findByIdAndUpdate(req.params.ghostsId, {
-//       $push: { reviewes: req.params.ghostsId }
-//     })
+router.post('/:ghostsId/reviews', async (req, res) => {
+  try {
+    const currentHaunt = await Haunted.findById(req.params.ghostsId);
+    const reviewDoc = currentHaunt.reviews;
+      reviewDoc.push(req.body)
+      await currentHaunt.save()
+    console.log(currentHaunt)
 
-//     res.redirect(`/ghosts/${req.params.ghostsId}`)
-//   } catch (err) {
-//     console.log(err)
-//     res.redirect('/')
-//   }
-// })
+    res.redirect(`/ghosts/${req.params.ghostsId}`)
+  } catch (err) {
+    console.log(err)
+    res.redirect('/')
+  }
+})
+
+
 
 router.put('/:ghostsId', async (req, res) => {
   try {
@@ -26,8 +30,8 @@ router.put('/:ghostsId', async (req, res) => {
       console.log('Permission granted')
     } else {
       console.log('Permission denied')
+      res.send(`A PUT request was issued for ${req.params.ghostsId}`)
     }
-    res.send(`A PUT request was issued for ${req.params.ghostsId}`)
   } catch (err) {
     console.log(err);
     res.redirect('/');

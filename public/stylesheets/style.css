@@ -34,6 +34,10 @@ label{
   color: #DDF5FF;
 
 }
+li{
+  color: #DDF5FF;
+  text-decoration: none;
+}
 
 .signup-page,
 .signin-page {
@@ -99,7 +103,7 @@ button:hover {
 }
 
 .signup-img {
-  background-image: url('https://res.cloudinary.com/jerrick/image/upload/v1712187101/660de6ddc9d606001d7b8367.jpg');
+  /* background-image: url('https://res.cloudinary.com/jerrick/image/upload/v1712187101/660de6ddc9d606001d7b8367.jpg'); */
   min-height: 110vh;
   background-size: cover;
   background-repeat: no-repeat;
@@ -123,14 +127,14 @@ button:hover {
 
 .index-header > a {
   padding: 6px 12px;
-  border: 1px solid gray;
+  border: 1px solid #DDF5FF;
   text-decoration: none;
   color: black;
 }
 
 .index-header > a:hover {
   background-color: black;
-  color: white;
+  color: #DDF5FF;
 }
 
 .card-container {
@@ -141,7 +145,7 @@ button:hover {
 
 .card-container > a {
   padding: 12px 25px;
-  border: 1px solid gray;
+  border: 1px solid #DDF5FF;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -153,7 +157,7 @@ button:hover {
 
 .card-container > a:hover {
   background-color: black;
-  color: white;
+  color: #DDF5FF;
 }
 
 a > h4 {
@@ -171,7 +175,7 @@ a > h4 {
 .new-form-container {
   display: flex;
   flex-direction: column;
-  border: 1px solid gray;
+  border: 1px solid #DDF5FF;
   padding: 10px 40px;
 }
 
@@ -240,7 +244,7 @@ a > h4 {
 }
 
 .show-details-container {
-  border: 1px solid gray;
+  border: 1px solid #DDF5FF;
   padding: 20px 30px;
   width: 70%;
   margin: 10px 0;
@@ -265,9 +269,9 @@ a > h4 {
 
 .owner-container > a {
   padding: 6px 32px;
-  background-color: #6f8dae;
+  background-color: #DDF5FF;
   text-decoration: none;
-  color: white;
+  color: #DDF5FF;
   font-weight: bold;
   border-radius: 8px;
   font-size: 0.8em;
@@ -296,19 +300,19 @@ a > h4 {
   padding: 8px 15px;
   width: 7em;
   height: 6em;
-  border: 1px solid gray;
+  border: 1px solid #DDF5FF;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   text-decoration: none;
   margin: 5px 10px 20px;
-  color: black;
+  color: #DDF5FF;
 }
 
 .profile-card-container > a:hover {
   background-color: black;
-  color: white;
+  color: #DDF5FF;
 }
 
 .profile-card-container > a > h4 {
@@ -319,3 +323,5 @@ a > h4 {
 .profile-card-container > a > p {
   font-size: 0.8em;
 }
+
+

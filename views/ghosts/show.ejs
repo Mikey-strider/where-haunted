@@ -21,6 +21,7 @@
      <form action="/ghosts/<%= ghosts._id %>?_method=DELETE" method="POST">
        <button type="submit">Delete Haunt</button>
      </form>
+    
     <% } else { %>
       <p>You don't own this, <%= ghosts.creator.username %> does!</p>
     <% } %>
@@ -28,25 +29,28 @@
     <p>Location <%= ghosts.location %></p>
 
     <ul>
-      <% ghosts.reviews.forEach(boo => { %>
-       <li><%= boo.reviews %></li>
+      <% ghosts.reviews.forEach(review => { %>
+       <li><%= review.author%> <%= review.whatType %> <%= review.ghostReview %> <%= review.rating %></li>
       <% }) %>
 
     </ul>
+   
   </div>
 
-  <!-- <form action="/ghosts/<%= ghosts._id %>" method="POST">
-    <label for="author">Author:</label>
-    <input type="text" name="author" id="author">
-    <label for="whatType">What Type</label>
-    <input type="text" name="whatType" id="whatType">
-    <label for="ghostReview">Ghost Review</label>
-    <textarea name="ghostReview" id="ghostReview" placeholder="Review Here"></textarea>
-    <label for="rating">What is your rating</label>
-    <input type="" name="rating" id="rating">
-    <button type="submit">Submit review</button>
+  
+<form action="/ghosts/<%= ghosts._id %>/reviews" method="POST">
+  <label for="author">Author:</label>
+  <input type="text" name="author" id="author">
+  <label for="whatType">What Type</label>
+  <input type="text" name="whatType" id="whatType">
+  <label for="ghostReview">Ghost Review</label>
+  <textarea name="ghostReview" id="ghostReview" placeholder="Review Here"></textarea>
+  <label for="rating">What is your rating</label>
+  <%- include('../partials/rating.ejs') %>
+  <button type="submit">Submit review</button>
 
-  </form> -->
+</form>
+
 <%- include('../partials/footer.ejs') %>
 
  
